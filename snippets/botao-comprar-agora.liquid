@@ -1,0 +1,9 @@
+ <button onclick='JavaScript:timedRedirect()' type="submit" name="add" id="AddToCart-{{ section.id }}" class="btn btn--full product-form__cart-submit{% unless current_variant.available %} btn--sold-out{% endunless %}{% if section.settings.enable_payment_button and product.selling_plan_groups == empty %} shopify-payment-button__button{% endif %}"{% unless current_variant.available %}disabled="disabled"{% endunless %}>
+   <span id="AddToCartText-{{ section.id }}">
+     {% unless current_variant.available %}
+     {{ 'products.product.sold_out' | t }}
+     {% else %}
+      COMPRAR AGORA
+      {% endunless %}
+   </span>
+ </button>
