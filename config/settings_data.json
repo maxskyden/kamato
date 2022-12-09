@@ -1,0 +1,496 @@
+{
+  "current": {
+    "color_header_bg": "#030303",
+    "color_header_links": "#fff",
+    "color_body_bg": "#f7f7f7",
+    "color_content_bg": "#fff",
+    "color_body_headings": "#030303",
+    "color_body_text": "#666",
+    "color_button_bg": "#07d700",
+    "color_button_text": "#fff",
+    "color_footer_bg": "#030303",
+    "color_footer_text": "#fff",
+    "color_hero_text": "#fff",
+    "color_hero_bg": "#07d700",
+    "type_accent_family": "swiss_721_n4",
+    "type_accent_spacing": false,
+    "type_accent_transform": false,
+    "type_base_family": "neue_haas_unica_n4",
+    "type_base_size": "16px",
+    "type_nav_size": "14px",
+    "type_nav_spacing": false,
+    "type_nav_transform": true,
+    "social_facebook_link": "https:\/\/fb.com\/kamato.ecom",
+    "social_instagram_link": "https:\/\/instagram.com\/kamato.ecom",
+    "share_facebook": false,
+    "share_twitter": false,
+    "share_pinterest": false,
+    "favicon": "shopify:\/\/shop_images\/kamato-favicon-branco.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/kamato-preto-300x1500.png",
+    "checkout_accent_color": "#006eff",
+    "checkout_button_color": "#006eff",
+    "checkout_banner_background_color": "#fff",
+    "checkout_call_to_action_color": "#006eff",
+    "checkout_use_header_image": false,
+    "color_newsletter_input": "#1a1a1a",
+    "sections": {
+      "slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "placeholder-0": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/banner-kamato.com.br-parcelas-cartoes-pix-boleto-formas-pagamento_3.png",
+              "image_position": "center center",
+              "title": "",
+              "button_label": "Exibir todos os produtos",
+              "button_link": ""
+            }
+          },
+          "6003d988-a47c-450b-a241-ca5fb2339241": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/banner-kamato.com.br-black-friday-eletro-eletronicos-51_-desconto-off_4.png",
+              "image_position": "center center",
+              "title": "",
+              "button_label": "Exibir todos os produtos",
+              "button_link": ""
+            }
+          },
+          "9eaefe2d-65b8-49f5-ad40-1f43c18e0d0a": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/banner-kamato.com.br-frete-gratis-todo-brasil_4_06c55173-3a52-4bbd-81d9-48fe2af86da0.png",
+              "image_position": "center center",
+              "title": "",
+              "button_label": "Exibir todos os produtos",
+              "button_link": ""
+            }
+          },
+          "c80fa1e1-a671-4777-b6b3-55abd9ccf2c4": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/banner-kamato.com.br-moda-acessorios_3_611925d7-5045-453c-9c5b-82fb1e912890.png",
+              "image_position": "center center",
+              "title": "",
+              "button_label": "Exibir todos os produtos",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "placeholder-0",
+          "6003d988-a47c-450b-a241-ca5fb2339241",
+          "9eaefe2d-65b8-49f5-ad40-1f43c18e0d0a",
+          "c80fa1e1-a671-4777-b6b3-55abd9ccf2c4"
+        ],
+        "settings": {
+          "hero_home_height": "small",
+          "hero_home_auto": true,
+          "hero_home_auto_speed": 7
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "linklist": {
+            "type": "menu",
+            "settings": {
+              "link_list": "footer"
+            }
+          },
+          "social": {
+            "type": "social",
+            "settings": {
+              "title": "Siga-nos!",
+              "align": "left"
+            }
+          }
+        },
+        "block_order": [
+          "linklist",
+          "social"
+        ],
+        "settings": {
+          "show_payment_icons": false
+        }
+      },
+      "featured-collections": {
+        "type": "featured-collections",
+        "blocks": {
+          "featured-collections-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "mais-vendidos"
+            }
+          },
+          "featured-collections-1": {
+            "type": "collection",
+            "settings": {
+              "collection": "ofertas"
+            }
+          }
+        },
+        "block_order": [
+          "featured-collections-0",
+          "featured-collections-1"
+        ],
+        "settings": {
+          "stretch_collection_image": false
+        }
+      },
+      "featured-products": {
+        "type": "featured-products",
+        "settings": {
+          "collection": "mais-vendidos",
+          "rows": 1
+        }
+      },
+      "image-content": {
+        "type": "image-content",
+        "blocks": {
+          "image-content-1": {
+            "type": "text_block",
+            "settings": {
+              "title": "Imagem com texto",
+              "text": "<p>Emparelhe textos grandes com uma imagem para destacar o produto, a coleção ou o post do blog escolhido. Adicione informações sobre disponibilidade, estilo ou até mesmo uma avaliação.<\/p>",
+              "align": "left"
+            }
+          }
+        },
+        "block_order": [
+          "image-content-1"
+        ],
+        "settings": {
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/logo-kamato.com.br.-branco-300px.png",
+          "logo_max_width": "300",
+          "main_linklist": "main-menu",
+          "promo_bar_enable": true,
+          "promo_bar_text": "FRETE GRÁTIS SOMENTE NA BLACK NOVEMBER!",
+          "promo_bar_link": ""
+        }
+      },
+      "1a6daa92-6726-486d-b6fc-d2eb8594ea71": {
+        "type": "brand-list",
+        "blocks": {
+          "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-2": {
+            "type": "logo",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/kamato.com.br-5_-desconto-off-pix-a-vista.png"
+            }
+          },
+          "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-3": {
+            "type": "logo",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/kamato.com.br-frete-gratis-todo-brasil.png"
+            }
+          },
+          "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-1": {
+            "type": "logo",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/kamato.com.br-compra-segura-garantia-satisfacao-ou-dinheiro-de-volta.png"
+            }
+          },
+          "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-0": {
+            "type": "logo",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/kamato.com.br-formas-pagamento-cartao-boleto-pix.png"
+            }
+          }
+        },
+        "block_order": [
+          "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-2",
+          "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-3",
+          "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-1",
+          "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-0"
+        ],
+        "settings": {
+          "title": "AS MELHORES CONDIÇÕES"
+        }
+      },
+      "6afcd7e9-2cbf-405f-bab7-05cee06ce0f1": {
+        "type": "newsletter",
+        "settings": {
+          "heading": "RECEBA NOSSAS PROMOÇÕES",
+          "subheading": "<p>Cupons de desconto, ofertas e liquidações e novidades!<\/p>"
+        }
+      },
+      "f1b4b418-35e7-4915-9beb-7b1742d323aa": {
+        "type": "rich-text",
+        "settings": {
+          "home_page_full_width": true,
+          "section_title": "ATENDIMENTO",
+          "text": "<p>Segunda à sexta: <strong>9h00<\/strong> às <strong>18h00<\/strong><\/p><p><strong>WhatsApp<\/strong>: (53) 99942 5548 | <strong>E-mail<\/strong>: sac@kamato.com.br<\/p>",
+          "text_size": "small"
+        }
+      },
+      "3635f631-a32b-4e55-bafd-60542a7a20e5": {
+        "type": "featured-products",
+        "settings": {
+          "collection": "fitness-1",
+          "rows": 2
+        }
+      },
+      "collection-filters": {
+        "type": "collection-filters",
+        "settings": {
+          "product_tags_enable": true,
+          "product_sorting_enable": true
+        }
+      },
+      "d6c4afbc-1866-4750-a907-e72c2fd2ccfe": {
+        "type": "featured-products",
+        "settings": {
+          "collection": "mamaes-e-bebes",
+          "rows": 2
+        }
+      },
+      "955bb4c1-c1d1-4ee6-b26c-391e470a8002": {
+        "type": "featured-products",
+        "settings": {
+          "collection": "smart-home",
+          "rows": 2
+        }
+      },
+      "b5adb7a0-cd7d-4c1b-9b5a-c383ba2a83a1": {
+        "type": "featured-products",
+        "settings": {
+          "collection": "por-menos-de-r-99",
+          "rows": 1
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "blocks": {
+          "c71948c4-e3ea-4e7d-a91d-da73a8479de7": {
+            "type": "slide",
+            "settings": {
+              "discount_percent": 10
+            }
+          }
+        },
+        "block_order": [
+          "c71948c4-e3ea-4e7d-a91d-da73a8479de7"
+        ],
+        "settings": {
+          "enable_ajax": true,
+          "stock_enable": false,
+          "enable_payment_button": false,
+          "social_sharing_products": true
+        }
+      },
+      "product-recommendations": {
+        "type": "product-recommendations",
+        "settings": {
+          "show_product_recommendations": true,
+          "heading": "Talvez você também goste de"
+        }
+      }
+    },
+    "content_for_index": [
+      "slideshow",
+      "1a6daa92-6726-486d-b6fc-d2eb8594ea71",
+      "3635f631-a32b-4e55-bafd-60542a7a20e5",
+      "d6c4afbc-1866-4750-a907-e72c2fd2ccfe",
+      "955bb4c1-c1d1-4ee6-b26c-391e470a8002",
+      "b5adb7a0-cd7d-4c1b-9b5a-c383ba2a83a1",
+      "6afcd7e9-2cbf-405f-bab7-05cee06ce0f1",
+      "f1b4b418-35e7-4915-9beb-7b1742d323aa"
+    ]
+  },
+  "presets": {
+    "Snowboards": {
+      "checkout_accent_color": "#006eff",
+      "checkout_banner_background_color": "#fff",
+      "checkout_button_color": "#006eff",
+      "checkout_call_to_action_color": "#006eff",
+      "checkout_use_header_image": false,
+      "color_body_bg": "#f7f7f7",
+      "color_body_headings": "#030303",
+      "color_body_text": "#666",
+      "color_button_bg": "#006eff",
+      "color_button_text": "#fff",
+      "color_content_bg": "#fff",
+      "color_footer_bg": "#030303",
+      "color_footer_text": "#fff",
+      "color_header_bg": "#030303",
+      "color_header_links": "#fff",
+      "color_hero_bg": "#006eff",
+      "color_hero_text": "#fff",
+      "color_newsletter_input": "#1a1a1a",
+      "type_accent_family": "unica_one_n4",
+      "type_accent_spacing": true,
+      "type_accent_transform": true,
+      "type_base_family": "karla_n4",
+      "type_base_size": "16px",
+      "type_nav_size": "14px",
+      "type_nav_spacing": true,
+      "type_nav_transform": true,
+      "sections": {
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "placeholder-0": {
+              "type": "slide",
+              "settings": {
+              }
+            },
+            "placeholder-1": {
+              "type": "slide",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "placeholder-0",
+            "placeholder-1"
+          ],
+          "settings": {
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "linklist": {
+              "type": "menu",
+              "settings": {
+              }
+            },
+            "social": {
+              "type": "social",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "linklist",
+            "social"
+          ],
+          "settings": {
+          }
+        },
+        "featured-collections": {
+          "type": "featured-collections",
+          "blocks": {
+            "featured-collections-0": {
+              "type": "collection",
+              "settings": {
+              }
+            },
+            "featured-collections-1": {
+              "type": "collection",
+              "settings": {
+              }
+            },
+            "featured-collections-2": {
+              "type": "collection",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "featured-collections-0",
+            "featured-collections-1",
+            "featured-collections-2"
+          ],
+          "settings": {
+          }
+        },
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "image-content": {
+          "type": "image-content",
+          "blocks": {
+            "image-content-0": {
+              "type": "image_block",
+              "settings": {
+              }
+            },
+            "image-content-1": {
+              "type": "text_block",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "image-content-0",
+            "image-content-1"
+          ],
+          "settings": {
+          }
+        }
+      },
+      "content_for_index": [
+        "slideshow",
+        "featured-collections",
+        "featured-products",
+        "image-content"
+      ]
+    },
+    "Outdoors": {
+      "checkout_accent_color": "#f4743c",
+      "checkout_banner_background_color": "#fff",
+      "checkout_button_color": "#f4743c",
+      "checkout_call_to_action_color": "#f4743c",
+      "checkout_use_header_image": false,
+      "color_body_bg": "#f7f7f7",
+      "color_body_headings": "#1a1a1a",
+      "color_body_text": "#666",
+      "color_button_bg": "#c04f1d",
+      "color_button_text": "#fff",
+      "color_content_bg": "#ffffff",
+      "color_footer_bg": "#213236",
+      "color_footer_text": "#fff",
+      "color_header_bg": "#213236",
+      "color_header_links": "#ffffff",
+      "color_hero_bg": "#f4743c",
+      "color_hero_text": "#fff",
+      "color_newsletter_input": "#425154",
+      "type_accent_family": "lora_n7",
+      "type_accent_spacing": false,
+      "type_accent_transform": false,
+      "type_base_family": "roboto_n4",
+      "type_base_size": "14px",
+      "type_nav_size": "15px",
+      "type_nav_spacing": false,
+      "type_nav_transform": false
+    },
+    "Boxing": {
+      "checkout_accent_color": "#d8232f",
+      "checkout_banner_background_color": "#fff",
+      "checkout_button_color": "#d8232f",
+      "checkout_call_to_action_color": "#d8232f",
+      "checkout_use_header_image": false,
+      "color_body_bg": "#f0f0f0",
+      "color_body_headings": "#222222",
+      "color_body_text": "#666",
+      "color_button_bg": "#d8232f",
+      "color_button_text": "#fff",
+      "color_content_bg": "#ffffff",
+      "color_footer_bg": "#222222",
+      "color_footer_text": "#ffffff",
+      "color_header_bg": "#222222",
+      "color_header_links": "#ffffff",
+      "color_hero_bg": "#d8232f",
+      "color_hero_text": "#fff",
+      "color_newsletter_input": "#303030",
+      "type_accent_family": "open_sans_condensed_n7",
+      "type_accent_spacing": false,
+      "type_accent_transform": true,
+      "type_base_family": "source_sans_pro_n4",
+      "type_base_size": "17px",
+      "type_nav_size": "14px",
+      "type_nav_spacing": true,
+      "type_nav_transform": true
+    }
+  }
+}
