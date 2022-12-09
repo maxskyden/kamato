@@ -1,0 +1,89 @@
+<!--- INICIO BOTÃO PEGAJOSO EASY CODING
+<link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<!-- para remover a animação exclua a linha de cima -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+  crossorigin="anonymous">
+</script>
+
+{% if template contains 'product' %}
+  <div class="sticky_cart">
+    <div class="product-details">
+       <div class="cart-btn animate__animated animate__slow animate__infinite animate__pulse">
+            <button onclick='JavaScript:timedRedirect()'
+              id="btn-sticky-cart" 
+              class="btn" >Comprar agora</button>
+          </div>
+        </div>
+      </div>    
+{% endif %}
+
+<style>
+@media screen and (min-width:721px){
+.sticky_cart{
+  display:none; /* Para exibir no desktop mude para display:block;  */
+}
+  
+}
+@media screen and (max-width:720px){
+.sticky_cart{
+  display:block; /* Para ocultar no mobile mude para display:none;  */
+}
+  
+}
+.sticky_cart{
+	position: fixed;
+	width: 100%;
+	left:0;
+	background: #00 ffff;    
+    opacity: 0;
+    transition: 0.6s;    
+    z-index:9999999;
+}
+
+#btn-sticky-cart {
+    background: #07d700;       /* Cor do botão */
+    color:#fff;                /* Cor do texto */
+    border-radius: 3px;        /* borda arredondada do botão */
+    width: 90%;                /* largura do botão */
+    height: 55px;              /* Altura do botão */
+    font-size:1.3em;           /* tamanho das letras do nome adicionar ao carrinho */
+    text-transform: uppercase; /* Exibindo texto em letra maiúscula */
+    font-weight: 700;          /* Texto em negrito */
+    margin: 0 5% 2% 5%;        /* margem (topo, dir, baixo, esq) */
+    opacity: 1;
+    transition: opacity 0.6s;
+}
+  
+.sticky_cart.show{
+	bottom:0;
+    opacity: 1;
+	transition: opacity 0.4s;
+}
+</style>
+<script>
+$(window).scroll(function (event) {
+    var height = $(window).height();
+    var scroll = $(window).scrollTop();
+    //console.log(scroll + " " + height);
+    if(document.documentElement.scrollTop > 800){
+     $(".sticky_cart").addClass("show");
+    } else {
+     $(".sticky_cart").removeClass("show");
+    }
+  });
+  
+  $("#btn-sticky-cart").click(function(){
+  	$(".paymentButtonsWrapper #AddToCart").click();
+  });
+</script>
+<!--- FINAL BOTÃO PEGAJOSO EASY CODING -->
+
+<script>
+redirectTime = "500";
+redirectURL = "/cart";
+function timedRedirect() {
+	setTimeout("location.href = redirectURL;",redirectTime);
+}
+</script>
