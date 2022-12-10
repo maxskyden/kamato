@@ -1,0 +1,28 @@
+{
+  "name": "kamato",
+  "version": "1.0.0",
+  "description": "Kamaato (kamato.com.br) is an ecommerce that is currently hosted on Shoppify, this respository contains the entire structure of files the Venture theme to be developed for new feature and modifications, transforming the venture theme from original to modifed with customization aimed at customer need.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nettoquerois/kamato.git"
+  },
+  "keywords": [
+    "Shopify",
+    "Themes",
+    "Venture",
+    "Ecommerce",
+    "Customization",
+    "mod",
+    "modification"
+  ],
+  "author": "Netto Querois",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nettoquerois/kamato/issues"
+  },
+  "homepage": "https://github.com/nettoquerois/kamato#readme"
+}
