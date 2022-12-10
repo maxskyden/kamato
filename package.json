@@ -1,7 +1,7 @@
 {
   "name": "kamato",
   "version": "1.0.0",
-  "description": "Kamaato (kamato.com.br) is an ecommerce that is currently hosted on Shoppify, this respository contains the entire structure of files the Venture theme to be developed for new feature and modifications, transforming the venture theme from original to modifed with customization aimed at customer need.",
+  "description": "Kamato (kamato.com.br) is an ecommerce that is currently hosted on Shoppify, this respository contains the entire structure of files the Venture theme to be developed for new feature and modifications, transforming the venture theme from original to modifed with customization aimed at customer need.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
