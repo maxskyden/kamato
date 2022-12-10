@@ -4,7 +4,7 @@
   "description": "Kamato (kamato.com.br) is an ecommerce that is currently hosted on Shoppify, this respository contains the entire structure of files the Venture theme to be developed for new feature and modifications, transforming the venture theme from original to modifed with customization aimed at customer need.",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write '**/*.liquid'",
+    "format": "prettier --write '**/*.liquid'"
   },
   "repository": {
     "type": "git",
