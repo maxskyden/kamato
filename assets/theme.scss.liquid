@@ -4021,7 +4021,7 @@ html {
 
 .product-single__price--compare {
   color: lighten($color-body-text, 5%);
-  font-size: em(20);
+  font-size: em(16);
   font-weight: 100;
 }
 
@@ -6859,3 +6859,19 @@ body {
   }
 }
 
+/*================ Discount theme mod ================*/
+
+.discount-tag {
+  color: {{ settings.color_button_bg }};
+  display: block;
+  line-height: 1.2em;
+}
+.discount-tag__text {
+  color: {{ settings.color_body_headings  }}
+}
+
+.product-single__price-discount {
+  font-weight: 400;
+  font-size: 2.8125em;
+  color: {{ settings.color_body_headings }};
+}

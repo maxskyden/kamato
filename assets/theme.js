@@ -92,7 +92,7 @@ theme.Discount = (function () {
 
     this.selector = {
       discountPrice: "#DiscountPrice-" + sectionId,
-      discountPriceClass: "product-single__price",
+      discountPriceClass: "product-single__price-discount",
       discountPercentJson: "#DiscountPercentJson-" + sectionId,
     };
     console.log(this.selector.discountPercentJson)

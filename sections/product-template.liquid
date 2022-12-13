@@ -13,15 +13,8 @@
   {% endcomment %}
   {% assign current_variant = product.selected_or_first_available_variant %}
   {% assign variants_with_unit_price = product.variants | where: "unit_price_measurement" %}
+  {% assign percentual_number = section.settings.percentual_number %}
 
-  <!-- - Autor: Netto Querois | @nettoquerois - WhatsApp: https://wa.me/5582999567786 -->
-  {% for block in section.blocks %}
-    {% case block.type %}
-      {% when 'slide' %}
-        {% capture discount_percent %} {{block.settings.discount_percent}} {% endcapture %}
-    {% endcase %}
-  {% endfor %}
-  
   <div class="grid product-single">
     <div class="grid__item {% if product.images.size > 1 %}medium-up--three-fifths{% else %}medium-up--one-half{% endif %}">
       <div class="photos">
@@ -90,58 +83,36 @@
         <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
         <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-        <div class="product-single__meta small--text-center" style="text-align:left!important;">
+        <div class="product-single__meta small--text-left">
           {% if settings.product_vendor_enable %}
             <p class="product-single__vendor">{{ product.vendor }}</p>
           {% endif %}
-
-          <h1 itemprop="name" class="product-single__title">{{ product.title }}<span class="verified__tag"></span></h1>
-
-<!-- RYVIU APP :: WIDGET-TOTAL -->
-<div class="review-widget" style="margin-bottom: .4em;">
-    <ryviu-widget-total reviews_data="{{product.metafields.ryviu.product_reviews_info  | escape  }}" product_id="{{product.id}}" handle="{{product.handle}}"></ryviu-widget-total>
-</div>
-<!-- / RYVIU APP --> 
-
-          <ul class="product-single__meta-list list--no-bullets list--inline{% if cart.taxes_included or shop.shipping_policy.body != blank %} product-single__price-container{% endif %}">
-            <li>
-              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-                <s id="ComparePrice-{{ section.id }}" class="product-single__price product-single__price--compare">{{ current_variant.compare_at_price | money }}</s>
-                <div class="product-tag"{{ block.shopify_attributes }}>{{ 'products.product.on_sale' | t }} DESCONTO DE {{-discount_percent-}}% NO PIX</div>
-            </li>
-            <br>
-            
-<!-- TAG DESCONTO -->
+          <!-- RYVIU APP :: WIDGET-TOTAL -->
+           <div class="review-widget">
+            <ryviu-widget-total reviews_data="{{product.metafields.ryviu.product_reviews_info  | escape  }}" product_id="{{product.id}}" handle="{{product.handle}}"></ryviu-widget-total>
+          </div>
+          <!-- / RYVIU APP --> 
+          <h1 itemprop="name" class="product-single__title">{{ product.title }}</span></h1>
+          <ul class="product-single__meta-list list--no-bullets {% if cart.taxes_included or shop.shipping_policy.body != blank %} product-single__price-container{% endif %}">
             <li id="ProductSaleTag-{{ section.id }}" class="{% unless product.compare_at_price > product.price %}hide{% endunless %}">
-              <div class="product-tag">
-                À VISTA NO PIX | 10% DE DESCONTO
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <s id="ComparePrice-{{ section.id }}" class="product-single__price product-single__price--compare">{{ current_variant.compare_at_price | money }}</s>
+              <div class="product-tag {% unless percentual_number == 0 %}hide{% endunless %}">
+                  {{ 'products.product.on_sale' | t }}
               </div>
-            </li><br>
-<!-- /TAG DESCONTO -->
+            </li>
 
-<!-- PREÇO RISCADO -->
-            <li style="margin-bottom:4px">
-              {% unless product.compare_at_price_max > product.price %}
-                <span class="visually-hidden">{{ 'products.product.regular_price' | t }}
-                </span>
-              {% endunless %}
-<!-- /PREÇO RISCADO -->
-
-              <div id="DiscountPrice-{{ section.id }}"></div>
-              <span id="ProductPrice-{{ section.id }}" class="product-single__price" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-                {{ current_variant.price | money }}
+            <li>
+              {% render 'discount', dynamic_discount: percentual_number %}
+              <span id="ProductPrice-{{ section.id }}" class="{% unless product.compare_at_price > product.price %}hide{% endunless %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+              {%- unless percentual_number == 0 -%} ou {{ current_variant.price | money }} {%- endunless -%}
               </span>
+              <!-- Parcelamento -->
+               <span>em 12x de {{ product.price | divided_by: 12 | divided_by: 0.8272 | money }}</span>
             </li>
             {% if product.compare_at_price_max > product.price %}            
             {% endif %}
 
-            
-              <!-- Parcelamento -->
-              <span>Parcele em até 12x de {{ product.price | divided_by: 12 | divided_by: 0.8272 | money }}</span>
-     
-
-
-            
             {%- if variants_with_unit_price.size > 0 -%}
               <li>
                 {% include 'product-unit-price', product_variant: current_variant %}
@@ -308,6 +279,11 @@
       ]
     </script>
   {% endif %}
+  <script type="application/json" id="DiscountPercentJson-{{ section.id }}">
+    {
+      "discount_percent": {{ percentual_number | json }}
+    }
+  </script>
 {% endunless %}
 
 <!-- RYVIU APP :: WIDGET --> 
@@ -315,13 +291,6 @@
 	<ryviu-widget handle="{{product.handle}}" product_id="{{product.id}}" title_product="{{product.title}}" image_product="{{ product.featured_image.src | img_url: '100x' }}"></ryviu-widget>
 </div>
 <!-- / RYVIU APP -->
-{% unless discount_percent == empty %}
-  <script type="application/json" id="DiscountPercentJson-{{ section.id }}">
-    {
-      "discount_percent":{{ discount_percent | json }}
-    }
-  </script>
-{% endunless %}
 {% schema %}
 {
   "name": {
@@ -482,29 +451,43 @@
         "zh-TW": "啟用產品分享"
       },
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_dynamic_discount",
+      "label": "Mostrar tag de desconto dinâmica",
+      "info": "Habilite um modelo dinâmico de tag que informa o valor percentual do desconto",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "percentual_number",
+      "label": "Número porcentual",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
     }
   ],
   "blocks": [
-     {
-       "name": "Discount",
-       "type": "slide",
-       "settings": [
-         {
-           "type": "number",
-           "id": "discount_percent",
-           "label": "Porcentagem",
-           "default": 10
-         }
-       ]
-     }
-   ]
+    {
+      "name": "Tag de desconto",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "discount_title_text",
+          "label": "Texto",
+          "default": "no PIX"
+        },
+        {
+          "type": "color",
+          "id": "discount_color_text",
+          "label": "Cor",
+          "default": "#030303"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
-
-<script>
-redirectTime = "500";
-redirectURL = "/cart";
-function timedRedirect() {
-	setTimeout("location.href = redirectURL;",redirectTime);
-}
-</script>
