@@ -109,21 +109,26 @@
               </span>
               <!-- Parcelamento -->
                <span>em 12x de {{ product.price | divided_by: 12 | divided_by: 0.8272 | money }}</span>
+               
             </li>
             {% if product.compare_at_price_max > product.price %}            
             {% endif %}
 
             {%- if variants_with_unit_price.size > 0 -%}
               <li>
-                {% include 'product-unit-price', product_variant: current_variant %}
+                {% render 'product-unit-price', product_variant: current_variant %}
               </li>
             {%- endif -%}
-            {% assign show_stock = false %}
-            {% if current_variant.inventory_quantity < 10 and current_variant.inventory_quantity > 0 %}
-              {% assign show_stock = true %}
-            {% elsif current_variant.inventory_quantity < 1 and current_variant.incoming %}
-              {% assign show_stock = true %}
-            {% endif  %}
+
+            {%- liquid
+            assign show_stock = false 
+            if current_variant.inventory_quantity < 10 and current_variant.inventory_quantity > 0 
+              assign show_stock = true 
+            elsif current_variant.inventory_quantity < 1 and current_variant.incoming 
+              assign show_stock = true 
+            endif 
+            -%}
+
             {%- if section.settings.stock_enable -%}
               <li>
                 <span id="ProductStock-{{ section.id }}" class="product-single__stock{% unless show_stock %} hide{% endunless %}">
@@ -254,7 +259,7 @@
 
              {% if section.settings.social_sharing_products %}
           <hr style="margin:1em 0em -.5em 0em;">
-          {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+          {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
         {% endif %}
       </div>
     </div>
