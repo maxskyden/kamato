@@ -93,10 +93,26 @@
       "footer": {
         "type": "footer",
         "blocks": {
+          "0dbb707f-14eb-41d1-990f-df8ab5694572": {
+            "type": "text",
+            "settings": {
+              "title": "Atendimento",
+              "text": "<p>Segunda à sexta: <strong>9h00<\/strong> às <strong>18h00<\/strong><\/p><p><a href=\"https:\/\/api.whatsapp.com\/send?phone=5553999425548&text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20comprar%20na%20Kamato.com.br.%20Pode%20me%20ajudar%3F\" target=\"_blank\" title=\"Atendimento por WhatsApp ao consumidor Kamato\"><strong>WhatsApp<\/strong>: (53) 99942 5548<\/a><\/p><p><a href=\"\/pages\/fale-conosco\" title=\"Fale Conosco\"><strong>E-mail<\/strong>: sac@kamato.com.br<\/a><\/p>"
+            }
+          },
           "linklist": {
             "type": "menu",
             "settings": {
               "link_list": "footer"
+            }
+          },
+          "f6897558-d5de-4cfc-8616-9fa22d0eb4f8": {
+            "type": "newsletter",
+            "settings": {
+              "color_newsletter_input": "#1a1a1a",
+              "color_newsletter_input_text": "#fff",
+              "title": "Receba Promoções",
+              "subheading": "<p>Cupons de desconto, ofertas, liquidações e novidades!<\/p>"
             }
           },
           "social": {
@@ -108,7 +124,9 @@
           }
         },
         "block_order": [
+          "0dbb707f-14eb-41d1-990f-df8ab5694572",
           "linklist",
+          "f6897558-d5de-4cfc-8616-9fa22d0eb4f8",
           "social"
         ],
         "settings": {
@@ -181,7 +199,7 @@
           "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-2": {
             "type": "logo",
             "settings": {
-              "image": "shopify:\/\/shop_images\/kamato.com.br-5_-desconto-off-pix-a-vista.png"
+              "image": "shopify:\/\/shop_images\/4.png"
             }
           },
           "1a6daa92-6726-486d-b6fc-d2eb8594ea71-1669216509f1395a44-3": {
@@ -215,6 +233,7 @@
       },
       "6afcd7e9-2cbf-405f-bab7-05cee06ce0f1": {
         "type": "newsletter",
+        "disabled": true,
         "settings": {
           "heading": "RECEBA NOSSAS PROMOÇÕES",
           "subheading": "<p>Cupons de desconto, ofertas e liquidações e novidades!<\/p>"
@@ -222,6 +241,7 @@
       },
       "f1b4b418-35e7-4915-9beb-7b1742d323aa": {
         "type": "rich-text",
+        "disabled": true,
         "settings": {
           "home_page_full_width": true,
           "section_title": "ATENDIMENTO",
@@ -319,11 +339,11 @@
     },
     "content_for_index": [
       "slideshow",
-      "1a6daa92-6726-486d-b6fc-d2eb8594ea71",
       "3635f631-a32b-4e55-bafd-60542a7a20e5",
       "d6c4afbc-1866-4750-a907-e72c2fd2ccfe",
       "955bb4c1-c1d1-4ee6-b26c-391e470a8002",
       "b5adb7a0-cd7d-4c1b-9b5a-c383ba2a83a1",
+      "1a6daa92-6726-486d-b6fc-d2eb8594ea71",
       "6afcd7e9-2cbf-405f-bab7-05cee06ce0f1",
       "f1b4b418-35e7-4915-9beb-7b1742d323aa"
     ]
