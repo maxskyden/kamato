@@ -22,7 +22,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
-  {% include 'social-meta-tags' %}
+  {% render 'social-meta-tags' %}
   {% render 'css-variables' %}
 
   <script>
@@ -145,11 +145,11 @@
       <div class="js-qty">
         <input type="text" value="{{ value }}" id="{{ key }}" name="{{ name }}" pattern="[0-9]*" data-line="{{ line }}" class="js-qty__input" aria-live="polite">
         <button type="button" class="js-qty__adjust js-qty__adjust--minus" aria-label="{% endraw %}{{ 'cart.label.decrease_quantity' | t }}{% raw %}">
-          {% endraw %}{% include 'icon-minus' %}{% raw %}
+          {% endraw %}{% render 'icon-minus' %}{% raw %}
           <span class="icon__fallback-text">−</span>
         </button>
         <button type="button" class="js-qty__adjust js-qty__adjust--plus" aria-label="{% endraw %}{{ 'cart.label.increase_quantity' | t }}{% raw %}">
-          {% endraw %}{% include 'icon-plus' %}{% raw %}
+          {% endraw %}{% render 'icon-plus' %}{% raw %}
           <span class="icon__fallback-text">+</span>
         </button>
       </div>
@@ -162,7 +162,7 @@
         <img src="" id="ProductZoomImg" class="product-modal__image">
       </div>
       <button type="button" class="modal__close js-modal-close text-link">
-        {% include 'icon-close' %}
+        {% render 'icon-close' %}
         <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t | json }}</span>
       </button>
     </div>
@@ -174,6 +174,6 @@
     <li id="a11y-slideshow-info">{{- 'homepage.hero.navigation_instructions' | t -}}</li>
   </ul>
 <!-- Não remova. Checkout Yampi. -->
-{% capture yampi_snippet_content %}{% include 'YampiSnippet' %}{% endcapture %} {% unless yampi_snippet_content contains 'Liquid error' %} {% include 'YampiSnippet' %} {% endunless %}
+{% capture yampi_snippet_content %}{% render 'YampiSnippet' %}{% endcapture %} {% unless yampi_snippet_content contains 'Liquid error' %} {% include 'YampiSnippet' %} {% endunless %}
 <!-- Não remova. Checkout Yampi. --> </body>
 </html>
