@@ -255,6 +255,9 @@ $color-border: $color-body;
 $color-border-body-darken: darken($color-body, 10%);
 $color-heading: {{ settings.color_body_headings }};
 
+// Theme mod colors
+$color-compare-price: {{ settings.color_compare_price_text }};
+
 // Header and footer
 $color-header: {{ settings.color_header_bg }};
 $color-header-border: adaptive-color($color-header, 5%);
@@ -4020,8 +4023,8 @@ html {
 }
 
 .product-single__price--compare {
-  color: lighten($color-body-text, 5%);
-  font-size: em(20);
+  color: lighten($color-compare-price, 5%);
+  font-size: em(16);
   font-weight: 100;
 }
 
@@ -6859,3 +6862,145 @@ body {
   }
 }
 
+/*================ Discount theme mod ================*/
+
+.discount-tag {
+  color: {{ settings.color_button_bg }};
+  display: block;
+  line-height: 1.2em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  span > svg.icon-pix{
+    width: 10px;
+    height: 10px;
+  }
+}
+.discount-tag__text {
+  color: {{ settings.color_body_headings }}
+}
+
+.product-single__price-discount {
+  font-weight: bold;
+  font-size: 2.8125em;
+  color: {{ settings.color_body_headings }};
+}
+
+/*=========== Installment modal theme mod ===========*/
+.installment-modal__content {
+  background-color: #7272726e;
+  overflow: auto;
+}
+
+.installment-modal__aling--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+.installment-modal__centred {
+  margin: 1rem;
+  padding: 0 0 1rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 369px;
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+.installment-modal__close{
+  padding: 10px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  svg.icon-close{
+    fill: red
+  }
+}
+.installment-wrapper {
+  border-radius: 3px;
+  padding: 15px;
+  margin: 10px 10px 10px 0px;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  a > svg.icon-arrow-down{
+      width: 10px;
+      height: 10px;
+  }
+}
+
+.icon-creditcard, .icon-pix{
+  fill: currentColor;
+}
+.installment__text--bold {
+  font-weight: bold
+}
+
+.installment-pix{
+  display: flex;
+  margin: 1rem;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.pix-price{
+  font-weight:bold;
+}
+.pix-discount{
+  font-weight: normal;
+  color: {{ settings.color_button_bg }}
+}
+.installment-pix__description{
+  font-size: small
+}
+.installment-table__wrapper{
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-direction: row;
+}
+.installment-table__title{
+  margin: 0.5px;
+}
+.installment-table{
+    tbody {
+      tr {
+        td {     
+          padding: 4px;
+          background-color: #f2f2f2;
+          font-size: small;
+          span {
+            font-weight: bold
+          }
+        }
+        td:nth-child(2) {
+          text-align: right;
+        }
+      }
+
+    }
+    thead {
+      tr {
+        th {
+          padding: 7px;
+          border: 0px solid #f7f7f7;
+          font-size: small;
+        }
+        th:nth-child(2) {
+          text-align: right;
+        }
+      }
+
+    }
+    tr:nth-child(even) {
+      td {
+        background-color: #fff;
+      }
+    }
+}

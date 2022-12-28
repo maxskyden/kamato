@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Venture",
-    "theme_author": "Shopify",
-    "theme_version": "12.6.1",
-    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/using-themes\/themes-by-shopify\/venture",
-    "theme_support_url": "https:\/\/support.shopify.com\/"
+    "theme_name": "Kamato",
+    "theme_author": "Netto Querois",
+    "theme_version": "0.22.2812",
+    "theme_documentation_url": "https:\/\/github.com\/nettoquerois\/kamato",
+    "theme_support_url": "https:\/\/github.com\/nettoquerois"
   },
   {
     "name": {
@@ -330,6 +330,14 @@
           "zh-TW": "按鈕文字"
         },
         "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_compare_price_text",
+        "label": {
+          "pt-BR": "Texto do preço comparativo do protudo"
+        },
+        "default": "#f00"
       },
       {
         "type": "header",
