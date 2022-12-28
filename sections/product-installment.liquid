@@ -1,0 +1,49 @@
+<div data-section-id="{{ section.id }}" data-section-type="installment">
+  {%- if section.settings.enable_installment -%}
+    <script type="application/json" id="InstallmentWidgetJson-{{ section.id }}">
+      [
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'installment_add' -%}
+          {
+          "fees":{{ block.settings.fees | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endcase -%}
+      {%- endfor -%}
+      ]
+    </script>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Parcelamento",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_installment",
+      "label": "Habilitar Parcelamento",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Parcela",
+      "type": "installment_add",
+      "settings": [
+        {
+          "type": "number",
+          "id": "fees",
+          "label": "Juros",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Installment"
+    }
+  ]
+}
+{% endschema %}

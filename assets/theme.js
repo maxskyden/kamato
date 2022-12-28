@@ -2,89 +2,6 @@ window.theme = window.theme || {};
 window.slate = window.slate || {};
 
 /* ================ MOD ================ */
-/**
- *
- * Discount
- * ----------------------------------------------------------------------------
- * Autor: Netto Querois | @nettoquerois
- * WhatsApp: https://wa.me/5582999567786
- *
- * ----------------------------------------------------------------------------
- *
- * This assigns this.discount to the theme.Discount() instance and uses the     * local variable $container as the parameter of the instance of the Discount
- * class.
- *
- * theme.Product(){
- *  function Product(container){
- *   var $container = (this.$container = $(container));
- *   var sectionId = $container.attr("data-section-id");
- *  ...
- *      this.discount = new theme.Discount($container)
- *  ...
- * }
- *
- * ----------------------------------------------------------------------------
- *
- * In the _initVariants() method of theme.Product.prototype define:
- * init(this.variants.currentVariant.price)
- *
- * The _initVariants() method has the function of loading the initial variables
- * and defining the values that will be used and displayed on the screen.
- *
- * The parameter: this.variants.currentVariant.price - contains the numerical
- * value of the current price of the product variant.
- *
- * init(): theme.Discount() method handles taking the value of the parameter
- * (this.variants.currentVariant.price),converting it to decimal,calculating
- * the discount value, and optionally calling the method that formats the value
- * to currency and then define that value in 3 parts and use it to display the
- * superscript and stylized price on the screen.
- *
- * this.discount is the global object of the theme.Product()
- * which inherits the init method from the theme.Discount().
- *
- * Product.prototype = ...{
- *  ...
- *  _initVariants: function(){
- *  ...
- *  this.variants = new slate.Variants(options)
- *  ...
- *  this.discount.init(this.variants.currentVariant.price)
- *  ...
- *  }
- * }
- *
- * ----------------------------------------------------------------------------
- *
- * In _updatePrice() - method of theme.Product.prototype inside variable check
- * (variant) ... if(variant) {...}, define: this.discount.init(variant.price)
- * The _updatePrice() method is an event object and its function is to update
- * the product price values based on data input from the choice of a different
- * product made by the user.
- *
- * The parameter variant.price is a property that comes from the variable
- * (variant) that is property of the parameter (evt) of the method itself,
- *
- * The parameter (evt) is an event that takes the current state of the product
- * data.
- *
- *  Product.prototype = ...{
- *  ...
- *    _updatePrice: function(evt){
- *      var variant = evt.variant;
- *      ...
- *      this.variants = new slate.Variants(options)
- *      ...
- *      if (variant) {
- *          this.discount.init(variant.price)
- *          ...
- *      }
- *    }
- * }
- *
- * ----------------------------------------------------------------------------
- *
- */
 theme.Discount = (function () {
   function Discount(container) {
     var $container = (this.$container = $(container));
@@ -95,7 +12,6 @@ theme.Discount = (function () {
       discountPriceClass: "product-single__price-discount",
       discountPercentJson: "#DiscountPercentJson-" + sectionId,
     };
-    console.log(this.selector.discountPercentJson)
     //console.log("Discount price seletor with section id",this.selector.discountPrice)
 
     this.settings = {
@@ -106,19 +22,23 @@ theme.Discount = (function () {
       currency: "BRL",
     };
     this.css = {
-      "top": "-1em",
+      top: "-1em",
       "font-size": "16px",
-      "position": "relative",
+      position: "relative",
     };
 
     if (!$(this.selector.discountPercentJson).html()) {
       console.log(this.selector.discountPercentJson + " Not found");
       return;
     }
-    this.percentObject = JSON.parse($(this.selector.discountPercentJson).html());
+    this.percentObject = JSON.parse(
+      $(this.selector.discountPercentJson).html()
+    );
+
+    theme.Installment.prototype.discount = this.percentObject.discount_percent
     //console.log("Percent number variable.", this.percentObject);
   }
-  Discount.prototype = {
+  Discount.prototype = _.assignIn({}, Discount.prototype, {
     init: function (variant) {
       //console.log("Gets the product variants.", variant);
       var decimalNumber = this._toDecimal(variant, (decimal) => {
@@ -131,8 +51,11 @@ theme.Discount = (function () {
           return discount;
         }
       );
-      var currencyFormat = theme.Currency.formatMoney(discountNumber, theme.moneyFormat)
-      
+      var currencyFormat = theme.Currency.formatMoney(
+        discountNumber,
+        theme.moneyFormat
+      );
+
       // By recommendation, the theme's default helper will be used. This snippet of code can stay here in case you need to use it.
       /*
       
@@ -188,7 +111,8 @@ theme.Discount = (function () {
       return callback(format);
     },
     _currencySplit: function (currency, callback) {
-      var regex = /(?<symbol>\D{2})\s(?<whole>[0-9]+)[,.](?<decimal>[0-9]{2})?/g;
+      var regex =
+        /(?<symbol>\D{2})\s(?<whole>[0-9]+)[,.](?<decimal>[0-9]{2})?/g;
       var pattern = regex.exec(currency);
       //console.log("Gets the currency and divides it into an object with 3 named parts (symbol, whole, decimal).",pattern.groups);
       return callback(pattern.groups);
@@ -203,10 +127,257 @@ theme.Discount = (function () {
       amount.find("sup").css(style);
       //console.log("Displays the currency in superscript with its CSS styling attributes applied. The currency refers to the price with the percentage discount applied.");
     },
-  };
+  });
   return Discount;
 })();
+theme.Installment = (function () {
+  function Installment(container) {
+    var $container = (this.$container = $(container));
+    var sectionId = $container.attr("data-section-id");
 
+    this.settings = {
+      sectionId: sectionId,
+      installmentId: "#InstallmentWidgetJson-",
+      variant: this.variant,
+      variantPrice: theme.Currency.formatMoney(this.variant,theme.moneyFormat),
+      discount: this.discount,
+    };
+
+    this.selector = this.settings.installmentId + this.settings.sectionId;
+    this.InstallmentInfo = "#InstallmentInfo";
+
+    this.table = $("#InstallmentTable");
+    this.tbody = this.table.find("tbody")
+    if (!$(this.selector).html()) {
+      $('.installment-wrapper').addClass("hide");
+      return;
+    }
+    this.installmentObject = JSON.parse($(this.selector).html());
+    
+    var that = this
+    this.interestFree = {}
+    this.atInterest = {}
+    this.interestFreeIndex = 0
+    this.installmentTag = {}
+    var render = theme.ThemeMod.renderInstallment(that.settings.variant, that.installmentObject)
+    
+     render.map(function(value, index, array){
+      var { deadline, fees, monthly, total} = value
+      if(fees === "sem juros"){
+        that.interestFree = value
+        that.interestFreeIndex = array.length
+      } else if( fees === "com juros"){
+        that.atInterest = value
+      }
+      that.tbody.append(`<tr><td>${deadline}x de <span>${monthly}</span> <br> ${fees}</td><td>${total}</td></tr>`)
+      return { deadline, fees, monthly, total}
+    })
+    
+    this.interestFreeName = render.length === this.interestFreeIndex ? "em até" : "ou"
+    if(Object.keys(this.interestFree).length){
+      this.installmentTag = this.interestFree
+    } else if(!Object.keys(this.interestFree).length){
+      this.installmentTag = this.atInterest
+    }
+    var { deadline, fees, monthly, total} = this.installmentTag
+    $(this.InstallmentInfo).html(`<br><span>${this.interestFreeName} </span><span>${deadline}x de ${monthly} </span><br><span> ${fees}</span>`)
+  
+    var installmentDiscountPix = theme.Currency.formatMoney(theme.ThemeMod.discountDown((that.settings.variant /100),that.settings.discount, function(result){
+      return result
+    }),theme.moneyFormat)
+    $('.installment-pix__price').html(`<span class="pix-price">${installmentDiscountPix} à vista  <span class="pix-discount">${that.settings.discount}% de desconto</span></span>`)
+    
+    theme.Installment.prototype.render = function(number){
+      $("#InstallmentTable tbody tr").remove()
+      var render = theme.ThemeMod.renderInstallment(number, that.installmentObject)
+    
+      render.map(function(value, index, array){
+       var { deadline, fees, monthly, total} = value
+       if(fees === "sem juros"){
+         that.interestFree = value
+         that.interestFreeIndex = array.length
+       } else if( fees === "com juros"){
+         that.atInterest = value
+       }
+       that.tbody.append(`<tr><td>${deadline}x de <span>${monthly}</span> <br> ${fees}</td><td>${total}</td></tr>`)
+       return { deadline, fees, monthly, total}
+     })
+     
+     this.interestFreeName = render.length === that.interestFreeIndex ? "em até" : "ou"
+     if(Object.keys(that.interestFree).length){
+      that.installmentTag = that.interestFree
+     } else if(!Object.keys(that.interestFree).length){
+      that.installmentTag = that.atInterest
+     }
+     var { deadline, fees, monthly, total} = that.installmentTag
+     $(that.InstallmentInfo).html(`<br><span>${this.interestFreeName} </span><span>${deadline}x de ${monthly} </span><br><span> ${fees}</span>`)
+   
+     var installmentDiscountPix = theme.Currency.formatMoney(theme.ThemeMod.discountDown((number /100),that.settings.discount, function(result){
+       return result
+     }),theme.moneyFormat)
+     $('.installment-pix__price').html(`<span class="pix-price">${installmentDiscountPix} à vista  <span class="pix-discount">${that.settings.discount}% de desconto</span></span>`)
+     
+    }
+  }
+  Installment.prototype = _.assignIn({}, Installment.prototype, {
+    _render: function () {},
+  });
+  return Installment
+})();
+theme.ThemeMod = (function () {
+  function init(){
+    return console.log(`
+
+    📃 Kamato Theme: Theme based on Shopify's old Venture theme,
+    modified with features and improvements functionalities.
+
+    🪪 Author: Netto Querois | @nettoquerois
+    🔗 https://wa.me/5582999567786
+
+    `)
+  }
+  /**
+   *
+   * Specific for Shopify's Venture theme
+   * Get price value named product variant, number comes as integer.
+   *
+   * @param number Integer number, which can be the current product price, variant
+   * @param callback Callback function that returns the value parameter
+   *
+   */
+  function getVariant(number, callback) {
+    if (typeof number !== Number) return new Error("Must be an integer");
+    return callback(number);
+  }
+    /**
+     *
+     * Gets the integer value number to convert to a fractional number
+     * in a proposal to make the number close to a monetary unit.
+     * The value of the integer received by parameter is divided by 100
+     * 
+     * @param number Integer number, which can be the current product price, variant
+     * @param callback Callback function that returns the converted number
+     *
+     */
+    function toFraction(number) {
+      var converting = number / 100;
+      return callback(converting);
+    }
+    function discountDown(number, numerator, callback){
+      var solve = (number - (numerator / 100) * number).toFixed(2);
+      return callback(solve)
+    }
+    /**
+     *
+     * Optional - Theme has a helper that converts number to currency
+     * recommended to use theme helper
+     * Use: theme.Currency.formatMoney(variant.price, theme.moneyFormat)
+     *
+     */
+    function toCurrency(number, locale, callback){
+      var { lang, currency } = locale;
+      var format = new Intl.NumberFormat(lang, {
+        style: "currency",
+        currency: currency,
+      }).format(number);
+      return callback(format);
+    }
+    /**
+     *  Gets the currency and divides it into an object with 3 named parts
+     *  (symbol, unity, cent)
+     * 
+     */
+    function currencyDismount(currency, callback) {
+      var regex = /(?<symbol>\D{2})\s(?<unity>[0-9]+)[,.](?<cent>[0-9]{2})?/g;
+      var pattern = regex.exec(currency);
+      return callback(pattern.groups);
+    }
+    /**
+     * 
+     * Displays the currency in superscript with its CSS styling attributes applied
+     * The currency refers to the price with the percentage discount applied
+     * 
+     */
+    function currencySuperscript(currency, settings) {
+      settings = {
+        currency: function(currency){
+          var regex = /(?<symbol>\D{2})\s(?<unity>[0-9]+)[,.](?<cent>[0-9]{2})?/g;
+          var pattern = regex.exec(currency);
+          return pattern.groups
+        },
+        seletor: settings.seletor,
+        class: settings.class,
+        style: settings.style,
+      }
+      var { symbol, unity, cent } = settings.currency(currency);
+      var target = $(settings.seletor).html(`<span></span>`);
+      var wrapper = target.find("span");
+      var render = wrapper
+        .addClass(settings.class)
+        .html(`<sup>${symbol}</sup>${unity}<sup>${cent}</sup>`);
+        render.find("sup").css(settings.style);
+      return render
+    }
+    function installment(number, settings){
+      var { deadline, divisor, multiplicador } = settings
+      var division = number / divisor;
+      console.log(division)
+      var monthly = Number((division + (division / 100) * multiplicador).toFixed(2))
+      var total = multiplicador === 0 ? number : Number((monthly * divisor).toFixed(2))   
+      var fees = multiplicador ? true : false
+      return {
+        number,
+        deadline,
+        fees,
+        monthly, 
+        total,
+      }
+    }
+    function renderInstallment(number, obj){
+      var result = []
+      var installment = obj.map(function(value, index){
+        var multiplicador = value.fees
+        var divisor = index + 1
+        var deadline = index + 1
+        return theme.ThemeMod.installment(number,{ deadline, divisor, multiplicador})
+      })
+      
+        for (var i in installment){
+          var moneyFormat = function(value){
+            return theme.Currency.formatMoney(value, theme.moneyFormat)
+          }
+          var {monthly, total} = {
+            monthly: moneyFormat(installment[i].monthly),
+            total: moneyFormat(installment[i].total)
+          }
+          
+          var items = {
+            deadline: installment[i].deadline,
+            fees: installment[i].fees ? "com juros" : "sem juros",
+            monthly,
+            total
+          }
+          var { deadline, fees, monthly, total} = items
+          result.push( { deadline, fees, monthly, total})
+        }
+        return result
+    }
+    function modalInstallment(){
+      return new window.Modals("ShowInstallments", "installment-modal")
+    }
+  return {
+    init,
+    getVariant,
+    toFraction,
+    discountDown,
+    toCurrency,
+    currencyDismount,
+    currencySuperscript,
+    installment,
+    renderInstallment,
+    modalInstallment
+  };
+})();
 /* ================ SLATE ================ */
 theme.Sections = function Sections() {
   this.constructors = {};
@@ -3037,14 +3208,10 @@ theme.Product = (function () {
         "variantImageChange" + this.settings.namespace,
         this._updateImages.bind(this)
       );
-      /**
-       * Widget Parcelamento ThemeMod
-       * -----------------------------------------------------------------------------
-       * Autor: Netto Querois | @nettoquerois
-       * WhatsApp: https://wa.me/5582999567786
-       */
 
       this.discount.init(this.variants.currentVariant.price);
+      theme.Installment.prototype.variant = this.variants.currentVariant.price;
+
     },
 
     _updateStock: function (variant) {
@@ -3162,18 +3329,11 @@ theme.Product = (function () {
 
     _updatePrice: function (evt) {
       var variant = evt.variant;
-      var productSingle = this.productSingleObject;
-
       if (variant) {
-        /**
-         * Widget Parcelamento ThemeMod
-         * -----------------------------------------------------------------------------
-         * Autor: Netto Querois | @nettoquerois
-         * WhatsApp: https://wa.me/5582999567786
-         */
 
         this.discount.init(variant.price);
-
+        theme.Installment.prototype.render(variant.price)
+        
         $(this.selectors.productPrice).html(
           theme.Currency.formatMoney(variant.price, theme.moneyFormat)
         );
@@ -4050,10 +4210,15 @@ theme.init = function () {
   sections.register("video", theme.Video);
   sections.register("collections-list", theme.CollectionsList);
   sections.register("product-recommendations", theme.ProductRecommendations);
+  sections.register("installment", theme.Installment);
+
   // Standalone modules
   $(window).on("load", theme.articleImages);
   theme.passwordModalInit();
   theme.productCardImageLoadingAnimation();
+
+  theme.ThemeMod.init()
+  theme.ThemeMod.modalInstallment()
 };
 
 theme.articleImages = function () {
