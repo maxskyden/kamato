@@ -266,17 +266,6 @@
       },
       "product-template": {
         "type": "product-template",
-        "blocks": {
-          "c71948c4-e3ea-4e7d-a91d-da73a8479de7": {
-            "type": "slide",
-            "settings": {
-              "discount_percent": 10
-            }
-          }
-        },
-        "block_order": [
-          "c71948c4-e3ea-4e7d-a91d-da73a8479de7"
-        ],
         "settings": {
           "enable_ajax": true,
           "stock_enable": false,

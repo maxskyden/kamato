@@ -23,11 +23,11 @@
           {%- for image in product.images -%}
             <div class="product-single__photo product__photo-container product__photo-container-{{ section.id }} js{% unless image == featured_image %} hide{% endunless %}"
                  id="ProductPhoto"
-                 style="max-width: {% include 'image-width' with image: image, width: 480 %}px;"
+                 style="max-width: {% render 'image-width' with image: image, width: 480 %}px;"
                  data-image-id="{{ image.id }}">
               <a href="{{ image | img_url: '1024x1024' }}"
                  class="js-modal-open-product-modal product__photo-wrapper product__photo-wrapper-{{ section.id }}"
-                 style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;">
+                 style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;">
                 {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
                 <img class="lazyload{% unless image == featured_image %} lazypreload{% endunless %}"
                   src="{{ image | img_url: '150x150' }}"
@@ -63,10 +63,10 @@
             Add SVG icon snippets to an object for custom slider arrows
           {% endcomment %}
           <script>
-            {% capture arrow_left %}{% include 'icon-arrow-left' %}{% endcapture %}
-            {% capture arrow_right %}{% include 'icon-arrow-right' %}{% endcapture %}
-            {% capture arrow_up %}{% include 'icon-arrow-up' %}{% endcapture %}
-            {% capture arrow_down %}{% include 'icon-arrow-down' %}{% endcapture %}
+            {% capture arrow_left %}{% render 'icon-arrow-left' %}{% endcapture %}
+            {% capture arrow_right %}{% render 'icon-arrow-right' %}{% endcapture %}
+            {% capture arrow_up %}{% render 'icon-arrow-up' %}{% endcapture %}
+            {% capture arrow_down %}{% render 'icon-arrow-down' %}{% endcapture %}
             var sliderArrows = {
               left: {{ arrow_left | json }},
               right: {{ arrow_right | json }},
@@ -89,7 +89,7 @@
           {% endif %}
           <!-- RYVIU APP :: WIDGET-TOTAL -->
            <div class="review-widget">
-            <ryviu-widget-total reviews_data="{{product.metafields.ryviu.product_reviews_info  | escape  }}" product_id="{{product.id}}" handle="{{product.handle}}"></ryviu-widget-total>
+            <ryviu-widget-total reviews_data="{{ product.metafields.ryviu.product_reviews_info | escape }}" product_id="{{ product.id }}" handle="{{ product.handle }}"></ryviu-widget-total>
           </div>
           <!-- / RYVIU APP --> 
           <h1 itemprop="name" class="product-single__title">{{ product.title }}</span></h1>
@@ -177,10 +177,10 @@
                     {% elsif current_variant.inventory_quantity < 1 and current_variant.incoming %}
                       {% if current_variant.available %}
                         {% assign date = current_variant.next_incoming_date | date: format: 'date' %}
-                        {{ 'products.product.will_not_ship_until' | t: date: date  }}
+                        {{ 'products.product.will_not_ship_until' | t: date: date }}
                       {% else %}
                         {% assign date = current_variant.next_incoming_date | date: format: 'date' %}
-                        {{ 'products.product.will_be_in_stock_after' | t: date: date  }}
+                        {{ 'products.product.will_be_in_stock_after' | t: date: date }}
                       {% endif %}
                     {% endif %}
                   {% endif %}
@@ -206,7 +206,7 @@
 
         {% capture "form_id" %}AddToCartForm-{{ section.id }}{%- endcapture %}
 
-        {% form 'product', product, class:form_class, id:form_id %}
+        {% form 'product', product, class: form_class, id: form_id %}
           {{ form | payment_terms }}
           {% unless product.has_only_default_variant %}
             {% for option in product.options_with_values %}
@@ -330,7 +330,7 @@
 
 <!-- RYVIU APP :: WIDGET --> 
 <div class="lt-block-reviews"> 
-	<ryviu-widget handle="{{product.handle}}" product_id="{{product.id}}" title_product="{{product.title}}" image_product="{{ product.featured_image.src | img_url: '100x' }}"></ryviu-widget>
+	<ryviu-widget handle="{{ product.handle }}" product_id="{{ product.id }}" title_product="{{ product.title }}" image_product="{{ product.featured_image.src | img_url: '100x' }}"></ryviu-widget>
 </div>
 <!-- / RYVIU APP -->
 {% schema %}
