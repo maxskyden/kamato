@@ -10,6 +10,11 @@ exclude_categories: []
 
 ignore:
   - node_modules/*
+  - package-lock.json
+  - package.json
+  - .vscode/*
+  - .gitignore
+  - README.md
 
 ConvertIncludeToRender:
   enabled: true
