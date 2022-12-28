@@ -270,7 +270,12 @@
           "enable_ajax": true,
           "stock_enable": false,
           "enable_payment_button": false,
-          "social_sharing_products": true
+          "social_sharing_products": true,
+          "enable_title_discount": true,
+          "discount_title_text": "no PIX",
+          "discount_color_text": "#030303",
+          "enable_dynamic_discount": true,
+          "percentual_number": 10
         }
       },
       "product-recommendations": {
@@ -278,6 +283,37 @@
         "settings": {
           "show_product_recommendations": true,
           "heading": "Talvez você também goste de"
+        }
+      },
+      "product-installment": {
+        "type": "product-installment",
+        "blocks": {
+          "95d41249-1adc-4bcf-a05d-7f2d417990f5": {
+            "type": "installment_add",
+            "settings": {
+              "fees": 0
+            }
+          },
+          "e7e4db0e-eca8-4927-b088-dd8e88d30aaa": {
+            "type": "installment_add",
+            "settings": {
+              "fees": 0
+            }
+          },
+          "eee66deb-be4e-4779-9bb7-0d2781865d60": {
+            "type": "installment_add",
+            "settings": {
+              "fees": 0
+            }
+          }
+        },
+        "block_order": [
+          "95d41249-1adc-4bcf-a05d-7f2d417990f5",
+          "e7e4db0e-eca8-4927-b088-dd8e88d30aaa",
+          "eee66deb-be4e-4779-9bb7-0d2781865d60"
+        ],
+        "settings": {
+          "enable_installment": false
         }
       }
     },
