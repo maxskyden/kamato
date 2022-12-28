@@ -321,7 +321,6 @@ theme.ThemeMod = (function () {
     function installment(number, settings){
       var { deadline, divisor, multiplicador } = settings
       var division = number / divisor;
-      console.log(division)
       var monthly = Number((division + (division / 100) * multiplicador).toFixed(2))
       var total = multiplicador === 0 ? number : Number((monthly * divisor).toFixed(2))   
       var fees = multiplicador ? true : false
