@@ -332,6 +332,14 @@
         "default": "#fff"
       },
       {
+        "type": "color",
+        "id": "color_compare_price_text",
+        "label": {
+          "pt-BR": "Texto do preço comparativo do protudo"
+        },
+        "default": "#f00"
+      },
+      {
         "type": "header",
         "content": {
           "cs": "Zápatí",

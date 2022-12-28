@@ -103,13 +103,51 @@
             </li>
 
             <li>
-              {% render 'discount', dynamic_discount: percentual_number %}
-              <span id="ProductPrice-{{ section.id }}" class="{% unless product.compare_at_price > product.price %}hide{% endunless %}" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-              {%- unless percentual_number == 0 -%} ou {{ current_variant.price | money }} {%- endunless -%}
-              </span>
-              <!-- Parcelamento -->
-               <span>em 12x de {{ product.price | divided_by: 12 | divided_by: 0.8272 | money }}</span>
-               
+              <div id="DiscountPrice-{{ section.id }}"></div>
+                <div class="discount-tag">
+                  {% if section.settings.enable_title_discount %}
+                    <span class="discount-tag__text">
+                    {{ section.settings.discount_title_text }}
+                    </span>
+                  {% endif %}
+                  {%- if section.settings.enable_dynamic_discount -%}
+                    ({{- percentual_number -}}% de desconto)
+                  {%- endif -%}
+                </div>
+             
+              <div class="installment-wrapper">
+                <div>
+                  <span id="ProductPrice-{{ section.id }}"
+                    class="{% unless percentual_number != 0 %}hide{% endunless %}"
+                    itemprop="price" 
+                    content="{{ current_variant.price | divided_by: 100.00 }}">
+                    {{ current_variant.price | money }}
+                  </span>
+                  <!-- Parcelamento -->
+                  <span id="InstallmentInfo"></span>
+                </div>
+                <a href="#ShowInstallments" id="Installment" class="js-modal-open-installment-modal">ver parcelas {% render 'icon-arrow-down' %}</a>
+              </div>
+            
+               <div id="ShowInstallments" class="installment-modal__content modal">
+                <div class="modal__inner installment-modal__aling--center">
+                  <div class="modal__centred installment-modal__centred">
+                    <button type="button" class="installment-modal__close js-modal-close text-link">
+                      {% render 'icon-close' %}
+                      <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t | json }}</span>
+                    </button>
+                    <div>
+                      <div class="installment-pix"> 
+                        <p>{% render 'icon-pix' %} PIX </p>
+                        <p class="installment-pix__price"></p>
+                        <p class="installment-pix__description">No PIX, com o código que será gerado na finalização da sua compra.</p>
+                       </div>
+                      {% render 'installment' %}
+                    </div>
+                  </div>
+                </div>
+          
+               </div>
             </li>
             {% if product.compare_at_price_max > product.price %}            
             {% endif %}
@@ -163,7 +201,6 @@
           {%- endif -%}
         </div>
                   
-<hr>
                   
         {% capture "form_class" %}product-form{% if section.settings.enable_payment_button %} product-form--payment-button{% endif %}{%- endcapture %}
 
@@ -459,6 +496,24 @@
     },
     {
       "type": "checkbox",
+      "id": "enable_title_discount",
+      "label": "Mostrar tag de desconto",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "discount_title_text",
+      "label": "Titulo da Tag de desconto",
+      "default": "no PIX"
+    },
+    {
+      "type": "color",
+      "id": "discount_color_text",
+      "label": "Cor da tag de desconto",
+      "default": "#030303"
+    },
+    {
+      "type": "checkbox",
       "id": "enable_dynamic_discount",
       "label": "Mostrar tag de desconto dinâmica",
       "info": "Habilite um modelo dinâmico de tag que informa o valor percentual do desconto",
@@ -472,26 +527,6 @@
       "max": 100,
       "step": 1,
       "default": 0
-    }
-  ],
-  "blocks": [
-    {
-      "name": "Tag de desconto",
-      "type": "slide",
-      "settings": [
-        {
-          "type": "text",
-          "id": "discount_title_text",
-          "label": "Texto",
-          "default": "no PIX"
-        },
-        {
-          "type": "color",
-          "id": "discount_color_text",
-          "label": "Cor",
-          "default": "#030303"
-        }
-      ]
     }
   ]
 }
