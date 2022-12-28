@@ -313,7 +313,7 @@
           "eee66deb-be4e-4779-9bb7-0d2781865d60"
         ],
         "settings": {
-          "enable_installment": false
+          "enable_installment": true
         }
       }
     },
