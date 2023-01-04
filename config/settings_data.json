@@ -20,8 +20,8 @@
     "type_nav_size": "14px",
     "type_nav_spacing": false,
     "type_nav_transform": true,
-    "social_facebook_link": "https:\/\/fb.com\/kamato.ecom",
-    "social_instagram_link": "https:\/\/instagram.com\/kamato.ecom",
+    "social_facebook_link": "https:\/\/fb.com\/kamato.com.br",
+    "social_instagram_link": "https:\/\/instagram.com\/kamato.com.br",
     "share_facebook": false,
     "share_twitter": false,
     "share_pinterest": false,
@@ -110,7 +110,7 @@
             "type": "newsletter",
             "settings": {
               "color_newsletter_input": "#1a1a1a",
-              "color_newsletter_input_text": "#fff",
+              "color_newsletter_input_text": "#ffffff",
               "title": "Receba Promoções",
               "subheading": "<p>Cupons de desconto, ofertas, liquidações e novidades!<\/p>"
             }
